@@ -1,10 +1,12 @@
-﻿using System.Collections;
+﻿using SQLite4Unity3d;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Category
 {
-    public int CategoryId;
-    public string Name;
-    public string ImageBase64;
+    [PrimaryKey, AutoIncrement]
+    public int CategoryId { get; set; }
+    public string Name { get; set; }
+    public string ImageBase64 { get; set; }
 }
