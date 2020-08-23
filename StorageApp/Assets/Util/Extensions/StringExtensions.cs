@@ -7,6 +7,11 @@ public static class StringExtensions
 {
     public static Sprite GetSpriteFromBase64(this string base64)
     {
+        if(base64 == null)
+        {
+            throw new ArgumentException("O valor do base64 não pode chegar nulo!");
+        }
+
         byte[] imageBytes = Convert.FromBase64String(base64);
         Texture2D tex = new Texture2D(2, 2);
         tex.LoadImage(imageBytes);

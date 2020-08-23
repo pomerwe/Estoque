@@ -1,9 +1,9 @@
 ﻿using SQLite4Unity3d;
 using UnityEngine;
-#if !UNITY_EDITOR
+
 using System.Collections;
 using System.IO;
-#endif
+
 using System.Collections.Generic;
 
 public class DataService
@@ -11,12 +11,14 @@ public class DataService
 
 	public SQLiteConnection con;
 	public bool dbExists = false;
+	public bool dropCreateTablesEnabled = false;
 
 	public DataService(string DatabaseName)
 	{
 
 #if UNITY_EDITOR
 		var dbPath = string.Format(@"Assets/StreamingAssets/{0}", DatabaseName);
+		dbExists = File.Exists(dbPath);
 #else
         // check if file exists in Application.persistentDataPath
         var filepath = string.Format("{0}/{1}", Application.persistentDataPath, DatabaseName);
@@ -72,7 +74,7 @@ public class DataService
 
 	public void CreateDB()
 	{
-		if(!dbExists)
+		if(!dbExists || dropCreateTablesEnabled)
         {
 			con.DropTable<Category>();
 			con.CreateTable<Category>();

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public class History
+public class History : IModelBase
 {
     [PrimaryKey, AutoIncrement]
     public int HistoryId { get; set; }

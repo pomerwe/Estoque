@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-public class Item
+public class Item : IModelBase
 {
     [PrimaryKey, AutoIncrement]
     public int ItemId { get; set; }
